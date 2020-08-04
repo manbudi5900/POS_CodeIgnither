@@ -1,0 +1,37 @@
+<div class="container">
+	<button class="button">
+		Click me
+	</button>
+	<input id = "number" type = "text" value = "18"> 
+	<p id = "fact">HELLO WORLD</p>
+</div>
+
+<script>
+	var number = document.getElementById('number');
+	var fact = document.getElementById('fact');
+	//console.log(number);
+	//console.log(number.value);
+
+	number.addEventListener('input', getFact);
+
+	function getFact(){
+		var num = number.value;
+		console.log(num);
+		
+		var xhr = new XMLHttpRequest();
+
+		xhr.open('GET', 'http://numbersapi.com/'+num);
+
+		xhr.onload = function(){
+			if(this.status == 200 && num != ''){
+				//console.log(this.responseText);
+				fact.style.display = "block";
+				fact.innerHTML = this.responseText;
+			}
+		}
+
+		xhr.send();
+
+	}
+
+</script>
